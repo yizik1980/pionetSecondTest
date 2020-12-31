@@ -1,0 +1,42 @@
+<div class="form">
+    <h3 *ngIf="isNew">הוסף חדש</h3>
+    <h3 *ngIf="!isNew">ערוך</h3>
+    
+    <div class="form-group relative">
+        <label for="name">כותרת</label>
+        <span class="error" *ngIf="error.title">{{error.title}}</span>
+        <input type="text" class="form-control" (focus)="clear()" id="title" required [(ngModel)]="page.title"
+            name="title">
+    </div>
+    <div class="form-group relative">
+        <label for="content">תוכן </label>
+        <span class="error" *ngIf="error.content">{{error.content}}</span>
+        <textarea class="form-control" (focus)="clear()" id="content" required [(ngModel)]="page.content" name="content"
+            name="content" id="content" cols="30" rows="10"></textarea>
+
+    </div>
+    <div class="form-group relative">
+        <label for="nickName">שם כינוי </label>
+        <input type="text" class="form-control" (focus)="clear()" id="nickName"  [(ngModel)]="page.nickName" name="nickName" />
+
+    </div>
+
+    <!-- <div class="form-group relative">
+        <label for="coverPhoto">upload coverPhoto</label>
+        <span class="error" *ngIf="error.fileName">{{error.fileName}}</span>
+        <input type="file" class="form-control" (focus)="clear()" (change)="uploadFile($event)" id="coverPhoto" required
+            name="coverPhoto">
+    </div> -->
+    <div class="form-group relative">
+        <label for="name">תוכן html</label>
+        <textarea  class="form-control" [(ngModel)]="page.htmlContent"  contenteditable="true" (focus)="clear()"
+            id="htmlContent">
+        </textarea>
+
+    </div>
+    <div class="form-group relative">
+        <button type="button" (click)="savepage()" *ngIf="isNew" >שמור</button>
+        <button type="button" (click)="updatepage()" *ngIf="!isNew" class="btn btn-success">עדכן</button>
+    </div>
+
+</div>
