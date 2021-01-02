@@ -24,7 +24,6 @@ export class pageListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.pageService.getpages();
     this.pagesSubscriber = this.pageService.getAllpages.subscribe(allpages => {
-      debugger;
       this.pages = allpages;
       this.fullpageList = allpages;
     })
@@ -34,7 +33,7 @@ export class pageListComponent implements OnInit, OnDestroy {
   }
   updatepage(p: page) {
     this.pageService.showCoveTrigger.next(p);
-    this.router.navigate(['page']);
+    this.router.navigate(['page', p.id]);
   }
   filterItem($event) {
     const reg = new RegExp($event.target.value);

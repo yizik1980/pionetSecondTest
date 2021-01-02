@@ -194,7 +194,6 @@ class pageListComponent {
     ngOnInit() {
         this.pageService.getpages();
         this.pagesSubscriber = this.pageService.getAllpages.subscribe(allpages => {
-            debugger;
             this.pages = allpages;
             this.fullpageList = allpages;
         });
@@ -204,7 +203,7 @@ class pageListComponent {
     }
     updatepage(p) {
         this.pageService.showCoveTrigger.next(p);
-        this.router.navigate(['page']);
+        this.router.navigate(['page', p.id]);
     }
     filterItem($event) {
         const reg = new RegExp($event.target.value);
@@ -227,7 +226,7 @@ pageListComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.pages);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.pages.length == 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.pages);
     } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwYWdlLWxpc3QuY29tcG9uZW50LmNzcyJ9 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](pageListComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
@@ -323,9 +322,11 @@ class pageHandlerComponent {
     }
     ngOnInit() {
         const id = this.activatedRoute.snapshot.params.id;
-        this.pageSubscribe = this.pageService.showCoveTrigger.subscribe(page => {
-            this.page = page;
-        });
+        if (id) {
+            this.pageSubscribe = this.pageService.getOnePage(id).subscribe(p => {
+                this.page = p;
+            });
+        }
     }
     savepage() {
         this.page.category_id = Math.floor(Math.random() * 100);
@@ -595,17 +596,15 @@ class pageService {
         this.isEditClickedSubject = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](this.updatepageObj);
         this.isEditClickedObservable = this.isEditClickedSubject.asObservable();
     }
-    isEditClicked(editClicked, page) {
-        this.updatepageObj = { "isEditClicked": editClicked, "page": page };
-        this.isEditClickedSubject.next(this.updatepageObj);
-    }
     getpages() {
         return this.http.get(this.baseUrl + 'pages').subscribe(result => {
             this.getAllpages.next(result);
         }, (err) => console.log(err));
     }
+    getOnePage(id) {
+        return this.http.get(this.baseUrl + 'pages/getPage/' + id);
+    }
     addpage(page) {
-        debugger;
         return this.http.post(this.baseUrl + 'pages/postPage', page);
     }
     updatepage(page) {

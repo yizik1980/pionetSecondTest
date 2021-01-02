@@ -15,3 +15,5 @@ CREATE TABLE [dbo].[page] (
 );
 
 # the rest are the same for category and items
+
+the angular client side are ready on dist folder

@@ -23,18 +23,16 @@ export class pageService {
     this.isEditClickedObservable = this.isEditClickedSubject.asObservable();
   }
 
-  isEditClicked(editClicked: boolean, page: page) {
-    this.updatepageObj = { "isEditClicked": editClicked, "page": page };
-    this.isEditClickedSubject.next(this.updatepageObj);
-  }
   public getpages() {
     return this.http.get<page[]>(this.baseUrl + 'pages').subscribe(result => {
       this.getAllpages.next(result);
     },
       (err) => console.log(err));
   }
+  getOnePage<Observable>(id: string) {
+    return this.http.get(this.baseUrl + 'pages/getPage/' + id);
+  }
   public addpage(page: page) {
-    debugger;
     return this.http.post<page>(this.baseUrl + 'pages/postPage', page);
   }
   public updatepage(page: page) {
