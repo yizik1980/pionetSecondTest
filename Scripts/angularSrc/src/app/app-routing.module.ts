@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { pageListComponent } from './componets/page-list/page-list.component';
-import { pageHandlerComponent } from './componets/page-handler/page-handler.component';
+import { pageListComponent } from './components/page-list/page-list.component';
+import { pageHandlerComponent } from './components/page-handler/page-handler.component';
 import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', component: pageListComponent },
   { path: 'page', component: pageHandlerComponent },
+  { path: 'page/:id', component: pageHandlerComponent },
 ];
 
 

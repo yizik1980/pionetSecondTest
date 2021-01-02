@@ -2,9 +2,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { page, errorModel } from '../../model/page';
-import { pageService } from './../../service/pages.service';
+import { pageService } from '../../service/pages.service';
 import { ValidateService } from '../../service/validate.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-handler',
@@ -17,7 +17,7 @@ export class pageHandlerComponent implements OnInit, OnDestroy {
   error = new errorModel();
   isNew: boolean;
   pageSubscribe: Subscription;
-  constructor(private pageService: pageService, private validationService: ValidateService,private route:Router) {
+  constructor(private pageService: pageService, private validationService: ValidateService, private route: Router, private activatedRoute: ActivatedRoute,) {
     this.page = new page();
     this.isNew = true;
   }
@@ -26,6 +26,8 @@ export class pageHandlerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    const id = this.activatedRoute.snapshot.params.id;
+
     this.pageSubscribe = this.pageService.showCoveTrigger.subscribe(page => {
       this.page = page;
     });

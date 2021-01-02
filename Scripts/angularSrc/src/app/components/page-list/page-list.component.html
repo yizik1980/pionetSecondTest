@@ -1,0 +1,11 @@
+<div class="pages">
+    <div *ngFor="let page of pages" class="pointer relative">
+        <s class="del" (click)="deletepage(page)"></s>
+        <a (click)="showPage(page)">{{page.title}}</a>
+
+        <s class="pen" (click)="updatepage(page)"></s>
+    </div>
+    <div *ngIf="pages.length==0">
+        <p>לאחר התחברות לדייטה בייס נא לחץ על הוספת עמודים </p>
+    </div>
+</div>

@@ -4,15 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
-import { pageHandlerComponent } from './componets/page-handler/page-handler.component';
-import { pageListComponent } from './componets/page-list/page-list.component'
+import { pageHandlerComponent } from './components/page-handler/page-handler.component';
+import { pageListComponent } from './components/page-list/page-list.component'
 
-import { pageCoverComponent } from './componets/page-cover/page-cover.component';
+import { pageCoverComponent } from './components/page-cover/page-cover.component';
 import { HttpLoadingInterceptor } from './interceptors/http-loading.interceptor';
-import { GlobalLoaderComponent } from './componets/loader/global-loader/global-loader.component';
-import { HeaderComponent } from './componets/header/header.component';
+import { GlobalLoaderComponent } from './components/global-loader/global-loader.component';
+import { HeaderComponent } from './components/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     pageCoverComponent,
     GlobalLoaderComponent,
     HeaderComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

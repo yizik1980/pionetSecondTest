@@ -10,12 +10,10 @@ export class HeaderComponent implements OnInit {
 
   @Input()
   title: string;
-  constructor(private router:Router) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-  addpage() {
-    this.router.navigate(['page']);
-  }
+
 
 }
