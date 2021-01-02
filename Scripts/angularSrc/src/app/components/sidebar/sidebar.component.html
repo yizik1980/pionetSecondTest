@@ -1,7 +1,7 @@
 <nav>
-    <aside>
-        <a [routerLink]="['/']" routerLinkActive="router-link-active">רשימת עמודים</a>
+    <aside (click)="home()">
+        <a>רשימת עמודים</a>
 
     </aside>
-    <aside> <a type="button" (click)="addpage()">הוסף עמוד</a></aside>
+    <aside (click)="addpage()"><a>הוסף עמוד</a></aside>
 </nav>

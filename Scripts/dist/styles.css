@@ -25,6 +25,7 @@ html {
 app-sidebar{width: 20vw;border-left: 1px solid;}
 app-sidebar nav{width: 100%;}
 app-sidebar nav aside{padding: 2%;text-align: center; border-bottom: 1px solid;cursor: pointer;}
+app-sidebar nav aside a{display: block;}
 .container {
 width: 60vw;
 height: 90vh;

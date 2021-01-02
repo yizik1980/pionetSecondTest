@@ -25,7 +25,8 @@ export class pageHandlerComponent implements OnInit, OnDestroy {
     this.isNew = true;
   }
   ngOnDestroy(): void {
-    this.pageSubscribe.unsubscribe();
+    if (this.pageSubscribe)
+      this.pageSubscribe.unsubscribe();
   }
 
   ngOnInit() {
