@@ -1,7 +1,8 @@
-in order to run the web app sample 
-you nee to genrate data table and to connect it through the web config
+# in order to run the web app sample 
+# you nee to genrate data table and to connect it through the web config
 
-the schema of the table is 
+# the schema of the table is 
+
 CREATE TABLE [dbo].[page] (
     [id]          INT           IDENTITY (1, 1) NOT NULL,
     [title]       VARCHAR (50)  NOT NULL,
@@ -12,4 +13,5 @@ CREATE TABLE [dbo].[page] (
     [category_id] INT           NOT NULL,
     PRIMARY KEY CLUSTERED ([id] ASC)
 );
-the rest are the same for category and items
+
+# the rest are the same for category and items
