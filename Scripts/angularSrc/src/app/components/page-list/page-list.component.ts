@@ -24,8 +24,18 @@ export class pageListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.pageService.getpages();
     this.pagesSubscriber = this.pageService.getAllpages.subscribe(allpages => {
-      this.pages = allpages;
-      this.fullpageList = allpages;
+      this.pages = allpages.sort((a, b) => {
+        var nameA = a.title.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.title.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+
+        return 0;
+      });
     })
   }
   showPage(p: page) {
